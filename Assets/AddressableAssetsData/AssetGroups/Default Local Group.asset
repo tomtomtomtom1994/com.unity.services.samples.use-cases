@@ -13,17 +13,15 @@ MonoBehaviour:
   m_Name: Default Local Group
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
-  m_Data:
-    m_SerializedData: []
   m_GUID: 5a4554c8272074ba7b841f87ea806662
   m_SerializeEntries:
-  - m_GUID: 4ee1efab245554e46b709e2d533935a0
-    m_Address: Sprites/Currency/Coin
+  - m_GUID: 3a190af4284864933873f74edeeee8ba
+    m_Address: Sprites/Currency/Star
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f59897fabe6cc407084a50f1e26996d9
-    m_Address: Sprites/Currency/Gem
+  - m_GUID: 4ee1efab245554e46b709e2d533935a0
+    m_Address: Sprites/Currency/Coin
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -32,23 +30,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3a190af4284864933873f74edeeee8ba
-    m_Address: Sprites/Currency/Star
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9c3d3ffeab49644e39a97ddc9f7c7bd8
     m_Address: Sprites/Inventory/Sword
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f4d03b8cee7f34daf8cec2cff609cf5c
-    m_Address: Sprites/Inventory/Shield
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d3f05dd2be8626341bdeaeed4320cc04
-    m_Address: Sprites/Currency/Water
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -57,9 +40,19 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4d03b8cee7f34daf8cec2cff609cf5c
+    m_Address: Sprites/Inventory/Shield
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f59897fabe6cc407084a50f1e26996d9
+    m_Address: Sprites/Currency/Gem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d098d9082bf4e4f6b94dbf2997c0917c, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 0dd805a36275a4ef0899f64b57796ef3, type: 2}
     - {fileID: 11400000, guid: 2e208fe07913c44b3a8bcbff032f9a58, type: 2}
+    - {fileID: 11400000, guid: 0dd805a36275a4ef0899f64b57796ef3, type: 2}

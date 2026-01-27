@@ -13,30 +13,8 @@ MonoBehaviour:
   m_Name: Fall
   m_EditorClassIdentifier: 
   m_GroupName: Fall
-  m_Data:
-    m_SerializedData: []
   m_GUID: 1c3a8b0519e0a46d9a8cc0be5b356427
-  m_SerializeEntries:
-  - m_GUID: de79b1e89e8184a72a8883889f26998f
-    m_Address: Sprites/BackgroundImage
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Fall
-  - m_GUID: 03207581188f449d6ac85160a9ffd71c
-    m_Address: Prefabs/PlayChallengeButton
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Fall
-  - m_GUID: 2ec3eb9d0951141a9a431f805d0d2605
-    m_Address: Prefabs/PlayButton
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Fall
-  - m_GUID: fd9450c13ec444e10bfcf19f9c10d001
-    m_Address: Sprites/ButtonArt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Fall
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d098d9082bf4e4f6b94dbf2997c0917c, type: 2}
   m_SchemaSet:

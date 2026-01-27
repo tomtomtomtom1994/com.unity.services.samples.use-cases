@@ -13,30 +13,8 @@ MonoBehaviour:
   m_Name: Winter
   m_EditorClassIdentifier: 
   m_GroupName: Winter
-  m_Data:
-    m_SerializedData: []
   m_GUID: 9ced49ddeb23949e0b8b2966c53d4b3e
-  m_SerializeEntries:
-  - m_GUID: f55849cb332f744a0a4cf77b13a9ef44
-    m_Address: Sprites/BackgroundImage
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Winter
-  - m_GUID: 425551d811b2741209bfea38dfc2c960
-    m_Address: Prefabs/PlayChallengeButton
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Winter
-  - m_GUID: 110606165f84144a5a894929d4598cff
-    m_Address: Prefabs/PlayButton
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Winter
-  - m_GUID: a4b3a6752cc804e658635d33aa533688
-    m_Address: Sprites/ButtonArt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Winter
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d098d9082bf4e4f6b94dbf2997c0917c, type: 2}
   m_SchemaSet:

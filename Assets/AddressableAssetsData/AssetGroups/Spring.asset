@@ -13,30 +13,8 @@ MonoBehaviour:
   m_Name: Spring
   m_EditorClassIdentifier: 
   m_GroupName: Spring
-  m_Data:
-    m_SerializedData: []
   m_GUID: f59462074632f41989a810bc27b48ca5
-  m_SerializeEntries:
-  - m_GUID: 3824a52a6e1ae4a3087935e235abc0e0
-    m_Address: Sprites/BackgroundImage
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Spring
-  - m_GUID: 227fbaebb6fd94bc08dec9ec7c33742f
-    m_Address: Prefabs/PlayChallengeButton
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Spring
-  - m_GUID: 93fbec33d28bd4febac42c4baeaf5ab8
-    m_Address: Prefabs/PlayButton
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Spring
-  - m_GUID: a1af2648405f546a39a46abc28ff99d6
-    m_Address: Sprites/ButtonArt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Spring
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d098d9082bf4e4f6b94dbf2997c0917c, type: 2}
   m_SchemaSet:

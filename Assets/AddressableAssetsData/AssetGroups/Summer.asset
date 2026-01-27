@@ -13,30 +13,8 @@ MonoBehaviour:
   m_Name: Summer
   m_EditorClassIdentifier: 
   m_GroupName: Summer
-  m_Data:
-    m_SerializedData: []
   m_GUID: 06ea3246a5ed3490183998cddffa4d3e
-  m_SerializeEntries:
-  - m_GUID: bc6edced2e6494c60a1c80f9267e01e9
-    m_Address: Prefabs/PlayChallengeButton
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Summer
-  - m_GUID: b166edd1fcca54b83b7f063dda6e0734
-    m_Address: Sprites/BackgroundImage
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Summer
-  - m_GUID: f7f3ead9eb8a84165a6ad50da09e2263
-    m_Address: Prefabs/PlayButton
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Summer
-  - m_GUID: d83c7931bc15741a59efe77af3d5d618
-    m_Address: Sprites/ButtonArt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Summer
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d098d9082bf4e4f6b94dbf2997c0917c, type: 2}
   m_SchemaSet:
