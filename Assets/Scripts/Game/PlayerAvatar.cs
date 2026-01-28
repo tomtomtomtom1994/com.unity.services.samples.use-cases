@@ -37,12 +37,23 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
 
 			if (m_IsMovementAllowed)
 			{
-				var acceleration = new Vector3(Input.GetAxis("Horizontal"),
-					0, Input.GetAxis("Vertical"));
+				float horizontal = Input.GetAxis("Horizontal");
+				float vertical = Input.GetAxis("Vertical");
 
-				acceleration *= Time.deltaTime * m_Acceleration;
+				// Rotate the player left/right
+				if (Mathf.Abs(horizontal) > 0.01f)
+				{
+					float rotationSpeed = 180f; // degrees per second
+					float rotation = horizontal * rotationSpeed * Time.deltaTime;
+					transform.Rotate(0, rotation, 0);
+				}
 
-				m_RigidBody.AddForce(acceleration, ForceMode.VelocityChange);
+				// Move the player forward/backward in the direction they are facing
+				if (Mathf.Abs(vertical) > 0.01f)
+				{
+					Vector3 moveDir = transform.forward * (vertical * Time.deltaTime * m_Acceleration);
+					m_RigidBody.AddForce(moveDir, ForceMode.VelocityChange);
+				}
 			}
 		}
 

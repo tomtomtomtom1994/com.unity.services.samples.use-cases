@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Netcode;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UshiSoft.Common;
 
@@ -8,6 +9,8 @@ namespace UshiSoft.UACPF
     public class PlayerCarControl : DriverBase
     {
 	    public InputAction moveAction;
+	    [field: SerializeField]
+	    public NetworkObject networkObject { get; private set; }
 		[SerializeField, Min(0.001f)] private float _steerTime = 0.1f;
         [SerializeField, Min(0.001f)] private float _steerReleaseTime = 0.1f;
 

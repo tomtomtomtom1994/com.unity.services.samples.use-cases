@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Services.Samples.ServerlessMultiplayerGame;
+using UnityEngine;
 
 namespace UshiSoft.UACPF
 {
@@ -24,7 +25,10 @@ namespace UshiSoft.UACPF
 
         private void Update()
         {
-            if (stopping)
+	        var net = GetComponent<NetworkCarPlayer>();
+	        if (net != null && !net.IsOwner)
+		        return;
+			if (stopping)
             {
                 Stop();
             }
