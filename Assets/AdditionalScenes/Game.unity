@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 201346135}
   - component: {fileID: 201346134}
   - component: {fileID: 201346133}
+  - component: {fileID: 201346136}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -359,11 +360,27 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
   m_LocalPosition: {x: 0, y: 250, z: -38}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
+--- !u!114 &201346136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201346132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b8bca4263a118458a3db6db22a8721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
+  target: {fileID: 0}
+  smoothSpeed: 0.125
+  locationOffset: {x: 0, y: 4, z: -11}
+  rotationOffset: {x: 10, y: 0, z: 0}
 --- !u!1 &240874252
 GameObject:
   m_ObjectHideFlags: 0

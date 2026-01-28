@@ -277,14 +277,17 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
 
             GameSceneManager.instance?.HideCountdown();
 
-            if (m_LocalPlayerAvatar != null)
+            var camera = Camera.main.GetComponent<CameraFollow>();
+			if (m_LocalPlayerAvatar != null)
             {
                 m_LocalPlayerAvatar.AllowMovement();
-            }
+                camera.SetTarget(m_LocalPlayerAvatar.transform);
+			}
             if (m_LocalCarPlayer != null)
             {
                 m_LocalCarPlayer.AllowMovement();
-            }
+                camera.SetTarget(m_LocalCarPlayer.transform);
+			}
         }
 
         void OnScoreChanged()
