@@ -29,12 +29,18 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
         [SerializeField]
         PlayerAvatar[] playerAvatarPrefabs;
 
+        // Change type to NetworkCarPlayer for inspector assignment
+        [SerializeField]
+        NetworkCarPlayer carPlayerPrefab;
+
         // The host is always the first connected client in the Network Manager.
         public static ulong hostRelayClientId => NetworkManager.Singleton.ConnectedClients[0].ClientId;
 
         public List<PlayerAvatar> playerAvatars { get; private set; } = new List<PlayerAvatar>();
+        public int players { get; private set; } = 0;
 
         PlayerAvatar m_LocalPlayerAvatar;
+        NetworkCarPlayer m_LocalCarPlayer;
 
         float m_ClientTimeout = float.MaxValue;
 
@@ -115,12 +121,11 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
         {
             if (Time.realtimeSinceStartup >= m_ClientTimeout)
             {
-                if (m_LocalPlayerAvatar == null)
+                if (m_LocalPlayerAvatar == null && m_LocalCarPlayer == null)
                 {
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -205,23 +210,44 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
 
         void SpawnPlayer(int playerIndex, ulong relayClientId, Vector3 position)
         {
-            var playerAvatarPrefab = playerAvatarPrefabs[playerIndex];
-            var playerAvatar = GameObject.Instantiate(playerAvatarPrefab, position, Quaternion.identity);
-
-            playerAvatar.networkObject.SpawnWithOwnership(relayClientId);
-
-            var playerId = LobbyManager.instance.GetPlayerId(playerIndex);
-            var playerName = LobbyManager.instance.GetPlayerName(playerIndex);
-            playerAvatar.SetPlayerAvatarClientRpc(playerIndex, playerId, playerName, relayClientId);
+            // If this is the first player, spawn the car prefab instead of the avatar
+            if (playerIndex == 0 && carPlayerPrefab != null)
+            {
+                var carPlayer = GameObject.Instantiate(carPlayerPrefab, position, Quaternion.identity);
+	            carPlayer.networkObject.SpawnWithOwnership(relayClientId);
+                var playerId = LobbyManager.instance.GetPlayerId(playerIndex);
+                var playerName = LobbyManager.instance.GetPlayerName(playerIndex);
+                carPlayer.SetPlayerCarClientRpc(playerIndex, playerId, playerName, relayClientId);
+                //AddCarPlayer(carPlayer, relayClientId == NetworkManager.Singleton.LocalClientId);
+            }
+            else
+            {
+                var playerAvatarPrefab = playerAvatarPrefabs[playerIndex];
+                var playerAvatar = GameObject.Instantiate(playerAvatarPrefab, position, Quaternion.identity);
+                playerAvatar.networkObject.SpawnWithOwnership(relayClientId);
+                var playerId = LobbyManager.instance.GetPlayerId(playerIndex);
+                var playerName = LobbyManager.instance.GetPlayerName(playerIndex);
+                playerAvatar.SetPlayerAvatarClientRpc(playerIndex, playerId, playerName, relayClientId);
+            }
         }
 
         public void AddPlayerAvatar(PlayerAvatar playerAvatar, bool isLocalPlayer)
         {
+	        players++;
             playerAvatars.Add(playerAvatar);
-
             if (isLocalPlayer)
             {
                 m_LocalPlayerAvatar = playerAvatar;
+            }
+        }
+
+        public void AddCarPlayer(NetworkCarPlayer carPlayer, bool isLocalPlayer)
+		{
+			players++;
+			// Optionally add to a car player list if you want to track all car players
+			if (isLocalPlayer)
+            {
+                m_LocalCarPlayer = carPlayer;
             }
         }
 
@@ -229,13 +255,14 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
         void PlayerStartedGameServerRpc()
         {
             m_NumStartGameAcknowledgments++;
-            if (m_NumStartGameAcknowledgments >= playerAvatars.Count)
-            {
-                // Delete and clear active lobby on this host (i.e. server). Note that we do not await since we are entering starting
-                // the game now and do not need to act on deletion or confirm that it's successfully deleted. If it fails for any
-                // reason (which it shouldn't) the lobby will simply time out and disappear anyway.
+            if (m_NumStartGameAcknowledgments >= players)
+			{
+				Debug.Log($"DeleteActiveLobbyNoNotify");
+				// Delete and clear active lobby on this host (i.e. server). Note that we do not await since we are entering starting
+				// the game now and do not need to act on deletion or confirm that it's successfully deleted. If it fails for any
+				// reason (which it shouldn't) the lobby will simply time out and disappear anyway.
 #pragma warning disable CS4014  // Because this call is not awaited, execution of the current method continues before the call is completed
-                LobbyManager.instance.DeleteActiveLobbyNoNotify();
+				LobbyManager.instance.DeleteActiveLobbyNoNotify();
 #pragma warning restore CS4014
             }
         }
@@ -253,6 +280,10 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
             if (m_LocalPlayerAvatar != null)
             {
                 m_LocalPlayerAvatar.AllowMovement();
+            }
+            if (m_LocalCarPlayer != null)
+            {
+                m_LocalCarPlayer.AllowMovement();
             }
         }
 
@@ -343,7 +374,7 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
         void GameOverAcknowledgedServerRpc()
         {
             m_NumGameOverAcknowledgments++;
-            if (m_NumGameOverAcknowledgments >= playerAvatars.Count)
+            if (m_NumGameOverAcknowledgments >= players)
             {
                 networkObject.Despawn(true);
 
@@ -357,7 +388,7 @@ namespace Unity.Services.Samples.ServerlessMultiplayerGame
         [ServerRpc(RequireOwnership = false)]
         public void OnPlayerAvatarDestroyedServerRpc(ulong playerRelayId)
         {
-            playerAvatars.RemoveAll(avatar => avatar.playerRelayId == playerRelayId);
+            players -= playerAvatars.RemoveAll(avatar => avatar.playerRelayId == playerRelayId);
 
             // Update scores to remove player's name/score from the scoreboard.
             if (!m_IsShuttingDown)
